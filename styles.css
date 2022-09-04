@@ -1,0 +1,11 @@
+#options {
+  padding-top: 25%;
+}
+
+canvas {
+  background-color: white;
+  border: 5px solid black;
+}
+#canvas-div {
+  padding-top: 50px;
+}

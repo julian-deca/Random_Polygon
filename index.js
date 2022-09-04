@@ -2,10 +2,11 @@ const bord = document.getElementById("bord");
 document.getElementById("btn").onclick = () => {
   dots = [];
   tempdots = [];
-  dotNum = 6;
+  dotNum = document.getElementById("dot-number").value;
   isDragingdot = false;
   ctx.fillStyle = "white";
   ctx.fillRect(0, 0, width, height);
+  fill = document.getElementById("fill").checked;
   getDots();
   drawdots(dots);
 };
@@ -17,9 +18,10 @@ const canvas = ctx.canvas;
 canvas.width = width;
 canvas.height = height;
 
+let fill = document.getElementById("fill").checked;
 let dots = [];
 let tempdots = [];
-let dotNum = 6;
+let dotNum = document.getElementById("dot-number").value;
 let isDragingdot = false;
 class Dot {
   constructor(radius = 10, color = "red") {
@@ -105,15 +107,14 @@ function getDots() {
 }
 
 function drawdots(dots) {
-  console.log(dots);
   ctx.beginPath();
   ctx.moveTo(dots[0].x, dots[0].y);
   for (let i = 1; i < dots.length - 1; i++) {
     ctx.lineTo(dots[i].x, dots[i].y);
   }
-
+  ctx.lineWidth = 2;
   ctx.closePath();
-  ctx.fill();
+  fill ? (ctx.fill(), ctx.stroke()) : ctx.stroke();
 }
 getDots();
 drawdots(dots);
